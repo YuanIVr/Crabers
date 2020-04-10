@@ -22,7 +22,7 @@ __cmd__.call(cmd);
 window.onload = function () {
     _loaded = true;
     cmd.prepare();
-}
+};
 
 function _check() {
     if (!_loaded) {
