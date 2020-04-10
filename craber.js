@@ -20,3 +20,28 @@
 .........................................................................................
 .........................................................................................
 */
+
+var cmd = {};
+// This is the most important object in game running.
+new function() {
+    this.canvas = {};
+    this.width = 500;
+    this.height = 600;
+    this.prepare = function() {
+        var cs = (this.canvas = document.createElement("canvas"));
+        cs.width = this.width;
+        cs.height = this.height;
+    };
+}.call(cmd);
+
+function GameElement(x, y) {
+    this.x = x ? x : 0;
+    this.y = y ? y : 0;
+    this.draw = function() {
+        // Replace Your Drawing.
+    };
+    this.update = function() {
+        // Replace Your Deciding.
+    };
+
+}
