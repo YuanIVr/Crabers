@@ -1,29 +1,39 @@
+const cmd = {};               // This is the most important object in game running.
+let pen = {};                 // The game drawer.
+let _loaded = false;          // Test the cmd.prepare
 
-var cmd = {};
-var pen = {};
-var _loaded = false;
-// This is the most important object in game running.
 function __cmd__() {
     this.canvas = {};
-    this.width = 500;
-    this.height = 600;
     this.prepare = function() {
-        var cs = (this.canvas = document.createElement("canvas"));
-        cs.width = this.width;
-        cs.height = this.height;
+        const cs = (this.canvas = document.createElement("canvas"));
+        cs.width = 500;
+        cs.height = 600;
         pen = cs.getContext("2d");
+        pen.fillStyle = "#ffffff";
+        pen.strokeStyle = "#000000";
         pen.fillRect(0, 0, cmd.width, cmd.height);
-
-        alert("prepared!")
+        document.body.appendChild(cs);
+        alert(document.body.innerHTML);
     };
+    this.setSize = function (w, h) {
+        this.canvas.width = Math.abs(w);
+        this.canvas.height = Math.abs(h);
+    };
+    this.setBackground = function (c) {
+        pen.fillStyle = c;
+    };
+    this.setForeground = function (c) {
+        pen.strokeStyle = c;
+    }
 }
+cmd.proto = __cmd__.prototype;
 __cmd__.call(cmd);
 
 window.onload = function () {
     _loaded = true;
     cmd.prepare();
+    cmd.start();
 };
-
 function _check() {
     if (!_loaded) {
         cmd.prepare();
