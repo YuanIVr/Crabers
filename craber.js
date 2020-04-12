@@ -18,12 +18,28 @@ function __cmd__() {
     this.setSize = function (w, h) {
         this.canvas.width = Math.abs(w);
         this.canvas.height = Math.abs(h);
-    };
+    };  // Set game view size;
     this.setBackground = function (c) {
         pen.fillStyle = c;
-    };
+    };  // set bg (fill color)
     this.setForeground = function (c) {
         pen.strokeStyle = c;
+    };  // set fg (stroke color)
+    this.getBackground = function () {
+        return pen.fillStyle;
+    };  // get bg (fill color)
+    this.getForeground = function () {
+        return pen.strokeStyle;
+    };  // get fg (stroke color)
+    this.polygon = function (arrayX, arrayY, close) {
+        pen.beginPath();
+        pen.moveTo(arrayX[0], arrayY[0]);
+        for (let i = 1; i < arrayX.length; i++) {
+            pen.lineTo(arrayX[i], arrayY[i]);
+        }
+        if (close) {
+            pen.closePath();
+        }
     }
 }
 cmd.proto = __cmd__.prototype;
